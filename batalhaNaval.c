@@ -1,14 +1,46 @@
 #include <stdio.h>
 
 // Desafio Batalha Naval - MateCheck
-// Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
-// Siga os comentários para implementar cada parte do desafio.
 
 int main() {
     // Nível Novato - Posicionamento dos Navios
-    // Sugestão: Declare uma matriz bidimensional para representar o tabuleiro (Ex: int tabuleiro[5][5];).
-    // Sugestão: Posicione dois navios no tabuleiro, um verticalmente e outro horizontalmente.
-    // Sugestão: Utilize `printf` para exibir as coordenadas de cada parte dos navios.
+    char linha[10] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
+    // Criando o tabuleiro {Matriz 10x10}
+    int tabuleiro[10][10] = {0}; // Inicializa a matriz com zeros
+
+    // exibindo o tabuleiro
+    printf("  * Tabuleiro Batalha Naval * \n\n");
+    printf("    "); // Espaços iniciais para alinhar as colunas
+    for (int y = 0; y < 10; y++)
+    {
+        printf(" %c ", linha[y]); // imprimir os numeros das colunas
+    }
+
+    printf("\n");
+
+    for (int x = 0; x < 10; x++)
+    {
+        printf(" %2d ", x + 1); // Imprimir números ao invés de letras na lateral das linhas
+        for (int y = 0; y < 10; y++)
+        {
+            if (x == 2 && (y == 3 || y == 4 || y == 5)) //Definir os números das colunas D, E e F para que exibam o número 3.
+            
+            {
+                printf(" 3 ");
+            }
+            else if ((x == 4 || x == 5 || x == 6) && (y == 7)) //Definir os números da coluna H para que o número 3 apareça nas linhas 5, 6 e 7.
+           
+            {
+                printf(" 3 ");
+            }
+            else
+            {
+                printf(" 0 "); // Exibir símbolo para representar células vazias
+            }
+        }
+
+        printf("\n");
+    }
 
     // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
     // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
