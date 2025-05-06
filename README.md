@@ -1,6 +1,7 @@
 ### jogo Batalha Naval - MateCheck
 
-***Estrutura do Tabuleiro
+***Estrutura do Tabuleiro***
+
 O jogo é baseado em um tabuleiro 10x10, representado por uma matriz bidimensional tabuleiro[TAMANHO][TAMANHO], onde cada célula pode conter valores diferentes dependendo das interações das habilidades.
 Além da matriz principal, há outras matrizes auxiliares que armazenam os efeitos individuais das habilidades:
 - cone[TAMANHO][TAMANHO] – Representa a forma geométrica do cone.
