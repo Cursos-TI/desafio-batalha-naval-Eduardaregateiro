@@ -8,6 +8,7 @@ Além da matriz principal, há outras matrizes auxiliares que armazenam os efeit
 - cruz[TAMANHO][TAMANHO] – Representa a cruz que será desenhada.
 - octaedro[TAMANHO][TAMANHO] – Representa o octaedro no tabuleiro.
 - areaAfetada[TAMANHO][TAMANHO] – Armazena as áreas impactadas.
+- 
 Todas essas matrizes são inicializadas com zeros, garantindo que, no início do jogo, o tabuleiro esteja vazio.
 
 **Exibição do Tabuleiro (imprimirTabuleiro())**
