@@ -1,103 +1,58 @@
-# ⚠️ Importante!!!
-Você pode escolher qualquer um dos desafios para desenvolver. Sinta-se à vontade para começar pelo desafio que mais lhe interessa.
+### jogo Batalha Naval - MateCheck
 
-# Desafio Batalha Naval - Três Níveis de Complexidade
+***Estrutura do Tabuleiro
+O jogo é baseado em um tabuleiro 10x10, representado por uma matriz bidimensional tabuleiro[TAMANHO][TAMANHO], onde cada célula pode conter valores diferentes dependendo das interações das habilidades.
+Além da matriz principal, há outras matrizes auxiliares que armazenam os efeitos individuais das habilidades:
+- cone[TAMANHO][TAMANHO] – Representa a forma geométrica do cone.
+- cruz[TAMANHO][TAMANHO] – Representa a cruz que será desenhada.
+- octaedro[TAMANHO][TAMANHO] – Representa o octaedro no tabuleiro.
+- areaAfetada[TAMANHO][TAMANHO] – Armazena as áreas impactadas.
+Todas essas matrizes são inicializadas com zeros, garantindo que, no início do jogo, o tabuleiro esteja vazio.
 
-Bem-vindo ao desafio "Batalha Naval"! Este projeto desafiará suas habilidades de programação utilizando vetores e matrizes para simular um jogo de Batalha Naval, dividido em três níveis: Novato, Aventureiro e Mestre. Em cada nível, novas funcionalidades serão adicionadas, tornando o desafio progressivamente mais complexo.
+***Exibição do Tabuleiro (imprimirTabuleiro())
+A função imprimirTabuleiro() é responsável por mostrar a matriz na tela, combinando os valores das diferentes habilidades aplicadas:
+- Cabeçalho:
+- Exibe um título * Tabuleiro Batalha Naval *.
+- Imprime os identificadores das colunas (A, B, C... J).
+- Exibe a numeração das linhas (1 a 10).
+- Preenchimento do Tabuleiro:
+- Percorre todas as células do tabuleiro e soma os valores presentes nas matrizes (tabuleiro, cone, cruz, octaedro e areaAfetada).
+- Exibe os números na tela, indicando onde cada habilidade foi aplicada.
 
-## 🏅 Nível Novato
+***Habilidades do Jogo
+Cada forma geométrica tem sua função específica para alterar o tabuleiro:
+*preencherCone(matriz, linha, coluna)
+Marca um cone, expandindo sua base para baixo:
+- O ponto inicial recebe 3.
+- A segunda linha afeta três células (esquerda, central e direita).
+- A terceira linha amplia ainda mais a base, afetando cinco células.
 
-Neste nível inicial, você implementará a lógica básica de posicionamento de navios em um tabuleiro de Batalha Naval utilizando vetores bidimensionais.
+*preencherCruz(matriz, linha, coluna)
+Desenha uma cruz, afetando:
+- Duas posições acima e abaixo da célula central.
+- Duas posições à esquerda e à direita.
 
-### 🚩 Objetivos:
-- **Posicionamento dos Navios:** O sistema deve simular a localização de dois navios no tabuleiro, um posicionado verticalmente e outro horizontalmente.
-- **Utilização de Vetores:** Os navios serão posicionados utilizando vetores bidimensionais, com coordenadas X e Y.
-- **Exibição de Coordenadas:** O sistema deve exibir as coordenadas de cada parte dos navios no console utilizando `printf`.
+*preencherOctaedro(matriz, linha, coluna)
+Cria um octaedro afetando as células adjacentes (cima, baixo, esquerda, direita) ao redor do ponto inicial.
 
-### 📥 Entrada de Dados:
-- Os valores serão inseridos manualmente por meio de variáveis no código.
+*marcarAreaAfetada(matriz, linha, coluna)
+Define áreas impactadas, inserindo o número 5 na posição específica da matriz.
 
-### 📤 Saída de Dados:
-- Após o posicionamento, o sistema deve exibir as coordenadas dos navios de forma clara e organizada.
+***Execução do Jogo (main())
+A função main() inicializa o tabuleiro e aplica habilidades em coordenadas específicas:
+- preencherCone(cone, 5, 2) → Aplica um cone na linha 6 e coluna C.
+- preencherCruz(cruz, 2, 3) → Desenha uma cruz na linha 3, coluna D.
+- preencherOctaedro(octaedro, 3, 7) → Marca um octaedro na linha 4, coluna H.
+- marcarAreaAfetada(areaAfetada, 9, 9) → Marca áreas atingidas em posições estratégicas.
+Após aplicar todas as habilidades, a função imprimirTabuleiro() é chamada para exibir o tabuleiro atualizado.
 
----
+***Objetivo e Possíveis Melhorias
+Esse jogo pode ser uma estratégia de ataque e defesa, onde cada habilidade afeta certas regiões do tabuleiro. Algumas melhorias que poderiam ser adicionadas:
+- Implementar jogadores que podem escolher onde posicionar os ataques.
+- Permitir uma interação dinâmica, onde o usuário escolhe os alvos durante a execução.
+- Adicionar uma lógica de pontuação baseada na cobertura das áreas impactadas.
 
-## 🏅 Nível Aventureiro
-
-No nível Aventureiro, você expandirá o tabuleiro e adicionará mais navios, incluindo posicionamentos na diagonal.
-
-### 🆕 Diferença em relação ao Nível Novato:
-- **Tabuleiro 10x10:** O tabuleiro será expandido para uma matriz 10x10.
-- **Posicionamento de Quatro Navios:** O sistema deverá posicionar quatro navios, incluindo dois na diagonal.
-- **Exibição Completa do Tabuleiro:** O sistema exibirá toda a matriz, onde 0 indica uma posição sem navio e 3 indica uma posição ocupada.
-
-### 🚩 Novas Funcionalidades:
-- **Matriz 10x10:** Implementação de uma matriz maior para representar o tabuleiro.
-- **Posicionamento de Navios na Diagonal:** Adição de navios posicionados diagonalmente.
-- **Exibição do Tabuleiro Completo:** O sistema mostrará o tabuleiro completo, indicando as posições ocupadas e livres.
-
----
-
-## 🏅 Nível Mestre
-
-No nível Mestre, o desafio se intensifica com a implementação de habilidades especiais representadas por matrizes específicas no tabuleiro.
-
-### 🆕 Diferença em relação ao Nível Aventureiro:
-- **Habilidades Especiais:** O sistema deve definir áreas de habilidades utilizando matrizes com padrões específicos: cone, cruz e octaedro.
-- **Estruturas de Repetição Aninhadas:** Utilização de loops aninhados para percorrer e preencher as áreas afetadas pelas habilidades.
-
-### 🚩 Novas Funcionalidades:
-- **Matrizes de Habilidades:** Implementação de três matrizes para representar habilidades especiais no tabuleiro.
-- **Padrões de Habilidade:** Criação de padrões específicos (cone, cruz, octaedro) para definir as áreas afetadas.
-- **Exibição das Áreas Atingidas:** O sistema exibirá o tabuleiro com as áreas afetadas, utilizando 0 para áreas não afetadas e 1 para áreas afetadas.
-
-### Exemplo de Saída:
-
-Exemplo e comando:
-printf("%d ",matriz[i][j]);
-
-### Exemplo de saída de habilidade em cone:
-
-0 0 1 0 0
-
-0 1 1 1 0
-
-1 1 1 1 1
-
-### Exemplo de saída de habilidade em octaedro:
-
-0 0 1 0 0
-
-0 1 1 1 0
-
-0 0 1 0 0
-
-### Exemplo de saída de habilidade em cruz:
-
-0 0 1 0 0
-
-1 1 1 1 1
-
-0 0 1 0 0
+***Conclusão
+O código constrói uma base sólida para um jogo de Batalha Naval Estratégica, utilizando padrões geométricos para modificar o tabuleiro.
 
 
-
-
-
----
-
-## 📋 Requisitos Funcionais Comuns
-- **Entrada de Dados:** Os valores serão inseridos manualmente por meio de variáveis no código.
-- **Utilização de Matrizes:** Os dados devem ser estruturados de maneira eficiente utilizando matrizes.
-- **Exibição de Resultados:** Os resultados devem ser exibidos de forma clara e organizada.
-
-## 📌 Requisitos Não Funcionais Comuns
-- **Performance:** O sistema deve executar operações de forma eficiente, sem atrasos perceptíveis.
-- **Documentação:** O código deve ser bem documentado, com comentários claros sobre a função de cada parte do código.
-- **Manutenibilidade:** O código deve ser organizado e fácil de entender, facilitando futuras manutenções e expansões.
-
----
-
-Boa sorte no desenvolvimento deste desafio! Aproveite para aprimorar suas habilidades em vetores e matrizes enquanto progride pelos níveis.
-
-Equipe de Ensino - MateCheck
